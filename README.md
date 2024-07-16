@@ -67,9 +67,3 @@ you will need to specify these secrets for it to work properly.
 - The ports specified above (6969 for the backend and 3002 for the frontend) should be configured in your project's settings.
 
 ## Contributing
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[Specify your project's license here]
