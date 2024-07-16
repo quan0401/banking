@@ -53,16 +53,7 @@ This repository contains both the backend and frontend components of the project
 
 ## Important Note for Backend
 
-- The backend requires some secrets to run. If you install dependencies and run the backend locally using:
-
-  ```bash
-  npm install
-  npm run dev
-  ```
-
-  you will need to specify these secrets for it to work properly.
-
-- When using Docker Compose, the necessary secrets are configured automatically, and the backend works out of the box.
+you will need to specify these secrets for it to work properly.
 
 - **For services like uploading images, you need to specify the Cloudinary secret.**
 
