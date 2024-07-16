@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:6969
+# @baseUrl = https://api.dev.socialappserver.online
+@urlPath = api/v1
+
+###
+GET  {{baseUrl}}/{{urlPath}}/userSaving/80101396-273b-4637-9b17-b39fdf9c1540/80f54ea3-29e2-43e9-8d88-457ce207e685
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+GET  {{baseUrl}}/{{urlPath}}/userSaving/80101396-273b-4637-9b17-b39fdf9c1540
+Content-Type: application/json
+withCredentials: true
+
+{}

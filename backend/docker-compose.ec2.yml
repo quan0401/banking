@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  banking_db:
+    container_name: mysql_banking
+    image: mysql:8.3.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 6906:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: api_root
+      MYSQL_USER: banking
+      MYSQL_DATABASE: bank
+      MYSQL_PASSWORD: api
+    volumes:
+      - ./docker-volumes/mysql:/var/lib/mysql
+
+  backend:
+    container_name: banking_backend
+    platform: linux/x86_64
+    image: quan0401/banking_backend:v5
+    restart: always
+    ports:
+      - 6969:6969
+    env_file: ./.env
+    environment:
+      - MYSQL_DB=mysql://banking:api@host.docker.internal:6906/bank
+      - CLIENT_URL=http://localhost:3002
+    depends_on:
+      - banking_db

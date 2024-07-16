@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  banking_db:
+    container_name: mysql_banking
+    image: mysql:8.3.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 6906:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: api_root
+      MYSQL_USER: banking
+      MYSQL_DATABASE: bank
+      MYSQL_PASSWORD: api
+    volumes:
+      - ./docker-volumes/mysql:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
+
+  backend:
+    container_name: banking_backend
+    platform: linux/x86_64
+    # image: quan0401/banking_backend:v8 # for five nodes
+    image: quan0401/banking_backend:v9 # for one node
+    build:
+      context: ./
+      dockerfile: Dockerfile.prod
+    restart: always
+    ports:
+      - 6969:6969
+    environment:
+      - MYSQL_DB=mysql://banking:api@host.docker.internal:6906/bank
+      - CLIENT_URL=http://localhost:3002
+      - ENABLE_APM=0
+      - JWT_TOKEN=jwt_token
+      - NODE_ENV=development
+      - CLIENT_URL=http://localhost:3002
+      - CLOUD_NAME=your_cloudinary_cloud # fill this field
+      - CLOUD_API_KEY=your_cloudinary_cloud # fill this field
+      - CLOUD_API_SECRET=your_cloudinary_cloud # fill this field
+      - CLOUD_FOLDER=bank
+      - SENDER_EMAIL=your_email # fill this field
+      - SENDER_EMAIL_PASSWORD=your_email # fill this field
+      - SECRET_KEY_ONE=secret1
+      - SECRET_KEY_TWO=secret2
+      - MOMO_ACCESS_KEY=F8BBA842ECF85
+      - MOMO_SECRET_KEY=K951B6PE1waDMi640xX08PD3vg6EkVlz
+    depends_on:
+      - banking_db
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'

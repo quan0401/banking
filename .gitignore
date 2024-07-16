@@ -1,5 +1,3 @@
-*
-!/.gitignore
-!/README.md
-!/backend/*
-!/frontend/*
+backup.sql
+frontend.service
+socialAppKeyPair.pem

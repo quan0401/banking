@@ -1,0 +1,50 @@
+# Stage 1: Build the application
+FROM node:21-alpine3.18 AS builder
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Copy other necessary files
+COPY .npmrc ./
+COPY tsconfig.json ./
+
+# Install dependencies (including development dependencies)
+RUN npm i -g npm@latest && npm ci
+
+# Copy the source code
+COPY src ./src
+COPY tools ./tools
+
+# Build the application
+RUN npm run build
+
+# Stage 2: Create the final image
+FROM node:21-alpine3.18
+
+# Set the working directory
+WORKDIR /app
+
+# Install necessary tools
+RUN apk add --no-cache curl
+
+# Copy only necessary files from the builder stage
+COPY package*.json ./
+COPY .npmrc ./
+COPY tsconfig.json ./
+RUN npm i -g npm@latest
+
+# Install only production dependencies
+RUN npm ci --only=production
+RUN npm install -g pm2
+
+# Copy the build artifacts from the builder stage
+COPY --from=builder /app/build ./build
+
+# Expose the application port
+EXPOSE 6969
+
+# Command to run the application
+CMD [ "npm", "run", "start" ]

@@ -1,0 +1,50 @@
+@baseUrl = http://localhost:6969
+# @baseUrl = https://api.dev.socialappserver.online
+@urlPath = api/v1
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/send-message
+Content-Type: application/json
+withCredentials: true
+
+{
+  "conversationId": "",
+  "userId": "83ece86a-018d-43b8-b422-a5f78b61fc91",
+  "messageType": "text",
+  "messageText": "Hello, this is a test message!"
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/chat/connect-with-admin
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/get-messages/126066e2-5754-495f-9b72-490d3d6ee8a9
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+GET {{baseUrl}}/{{urlPath}}/chat/get-conversations/83ece86a-018d-43b8-b422-a5f78b61fc91
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+
+
+# {
+#   "conversationId": "",
+#   "userId": "83ece86a-018d-43b8-b422-a5f78b61fc91",
+#   "messageType": "text",
+#   "status": "sent",
+#   "messageText": "Hello, this is a test message!",
+#   "mediaUrl": "",
+#   "sentAt": "",
+#   "editedAt": "",
+#   "deletedAt": null
+# }

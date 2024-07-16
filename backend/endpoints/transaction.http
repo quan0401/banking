@@ -1,0 +1,61 @@
+@baseUrl = http://localhost:6969
+# @baseUrl = https://api.dev.socialappserver.online
+@urlPath = api/v1
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/transaction/pay/26f947d0-180e-4d45-866c-4ab799f339d7
+Content-Type: application/json
+withCredentials: true
+
+{
+  "bankAccountId": "7f669f1a-2a4f-4607-9868-77265d912ea3",
+  "amount": 100,
+  "transactionType": 1
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/transaction/withdraw/e5eedee5-2278-469e-8d43-10f4cc70ed53
+Content-Type: application/json
+withCredentials: true
+
+{
+  "bankAccountId": "7f669f1a-2a4f-4607-9868-77265d912ea3",
+  "amount": 100,
+  "transactionType": -1
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/transaction/all
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+GET {{baseUrl}}/{{urlPath}}/transaction/savingPlan/e5eedee5-2278-469e-8d43-10f4cc70ed53
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+POST {{baseUrl}}/{{urlPath}}/transaction/payment
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+GET {{baseUrl}}/{{urlPath}}/transaction/byDate/2024-06-11/2024-06-30
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+POST {{baseUrl}}/{{urlPath}}/transaction/withdraw/01b627df-9c56-43dd-a4de-d3c3e7f25afa
+Content-Type: application/json
+withCredentials: true
+
+{}

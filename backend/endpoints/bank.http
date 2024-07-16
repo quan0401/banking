@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:6969
+# @baseUrl = https://api.dev.socialappserver.online
+@urlPath = api/v1
+
+###
+POST {{baseUrl}}/{{urlPath}}/bankAccount
+Content-Type: application/json
+withCredentials: true
+
+{
+  "accountHolder": "John Doe",
+  "bankName": "MB",
+  "accountNumber": "1234567890"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/bankAccount
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+GET {{baseUrl}}/{{urlPath}}/bankAccount/e5437b58-8e00-44aa-b6e5-6afb38fa771e
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/bankAccount/delete/all
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/bankAccount/e5437b58-8e00-44aa-b6e5-6afb38fa771e
+Content-Type: application/json
+withCredentials: true
+
+{}
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/bankAccount/7f669f1a-2a4f-4607-9868-77265d912ea3
+Content-Type: application/json
+withCredentials: true
+
+{
+  "accountHolder": "John Doe",
+  "bankName": "MB",
+  "accountNumber": "1234567890"
+}
